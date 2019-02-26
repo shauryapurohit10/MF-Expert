@@ -82,43 +82,30 @@ $(document).ready(function(){
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>S.No</th>
-                        <th>Name</th>
-                        <th>Contact Number</th>
-                        <th>Actions</th>
+                        <th class="text-center">Id</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Contact Number</th>
+                        <th class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>ABC</td>
-                        <td>9876543210</td>
+                    <tr *ngFor="let employee of employees; let i= index;">
+                        <td>
+                            <input type="number" min="1" [(ngModel)]="employee.id" [disabled]="!employee.isEditable" class="text-center">
+                        </td>
+                        <td>
+                            <input type="text" [(ngModel)]="employee.name" [disabled]="!employee.isEditable" class="text-center">
+                        </td>
+                        <td>
+                            <input type="text" [(ngModel)]="employee.cnumber" [disabled]="!employee.isEditable" class="text-center">
+                        </td>
                         <td>
 							<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                            <button class="edit" title="Edit" data-toggle="tooltip" (click)="employee.isEditable=!employee.isEditable" *ngIf="!employee.isEditable"><i class="material-icons">&#xE254;</i></button>
+                            <button class="save" title="Save" data-toggle="tooltip" *ngIf="employee.isEditable" (click)="employee.isEditable=!employee.isEditable"><i class="material-icons">&#xE161;</i></button>
+                            <button class="delete" title="Delete" data-toggle="tooltip" (click)="deleteEmployee(i)"><i class="material-icons">&#xE872;</i></button>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>DEF</td>
-                        <td>1234567890</td>
-                        <td>
-							<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>GHI</td>
-                        <td>1122334455</td>
-                        <td>
-							<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>      
+                    </tr>    
                 </tbody>
             </table>
         </div>    
