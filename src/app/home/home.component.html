@@ -1,4 +1,5 @@
 <app-header></app-header>
+<app-side-nav></app-side-nav>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -70,9 +71,9 @@ $(document).ready(function(){
 </head>
 <body> 
     <div class="container">
-        <div class="table-wrapper">
+        <div class="table-wrapper" style="margin-top:100px">
             <div class="table-title">
-                <div class="row">
+                <div class="row" style="margin-top:0px">
                     <div class="col-sm-8"><h2><b>Member Details</b></h2></div>
                     <div class="col-sm-4">
                         <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
@@ -97,10 +98,10 @@ $(document).ready(function(){
                             <input type="text" [(ngModel)]="employee.name" [disabled]="!employee.isEditable" class="text-center">
                         </td>
                         <td>
-                            <input type="text" [(ngModel)]="employee.cnumber" [disabled]="!employee.isEditable" class="text-center">
+                            <input type="number" [(ngModel)]="employee.cnumber" [disabled]="!employee.isEditable" class="text-center">
                         </td>
                         <td>
-							<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+							<!-- <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a> -->
                             <button class="edit" title="Edit" data-toggle="tooltip" (click)="employee.isEditable=!employee.isEditable" *ngIf="!employee.isEditable"><i class="material-icons">&#xE254;</i></button>
                             <button class="save" title="Save" data-toggle="tooltip" *ngIf="employee.isEditable" (click)="employee.isEditable=!employee.isEditable"><i class="material-icons">&#xE161;</i></button>
                             <button class="delete" title="Delete" data-toggle="tooltip" (click)="deleteEmployee(i)"><i class="material-icons">&#xE872;</i></button>
@@ -108,6 +109,32 @@ $(document).ready(function(){
                     </tr>    
                 </tbody>
             </table>
+            <!-- <hr>
+            <br>
+            <h1>Add an Employee</h1>
+            <form>
+                <div>
+                    <label>Id</label>
+                    <div>
+                        <input type="number" class="" name="id" [(ngModel)]="id" required />
+                    </div>
+                </div>
+                <div>
+                    <label>Name</label>
+                    <div>
+                        <input type="text" class="" name="name" [(ngModel)]="name" required />
+                    </div>
+                </div>
+                <div>
+                    <label>Contact Number</label>
+                    <div>
+                        <input type="text" class="" name="cnumber" [(ngModel)]="cnumber" required />
+                    </div>
+                </div>                              
+                <div>
+                    <input type="submit" value="Submit" class="" (click)="addRow()" />
+                </div>
+            </form> -->
         </div>    
     </div>  
     <div class="container text-center">

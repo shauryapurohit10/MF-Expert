@@ -12,6 +12,11 @@ import { ComponentComponent } from './component/component.component';
 import { BodyComponent } from './body/body.component';
 import { MainComponent } from './main/main.component';
 import { HomeComponent } from './home/home.component';
+import { MembersComponent } from './members/members.component';
+import { MemberInfoComponent } from './members/member-info/member-info.component';
+import { AboutComponent } from './about/about.component';
+import { SideNavComponent } from './side-nav/side-nav.component';
+import { AddmemberComponent } from './members/addmember/addmember.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,12 @@ import { HomeComponent } from './home/home.component';
     ComponentComponent,
     BodyComponent,
     MainComponent,
-    HomeComponent
+    HomeComponent,
+    MembersComponent,
+    MemberInfoComponent,
+    AboutComponent,
+    SideNavComponent,
+    AddmemberComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +50,16 @@ import { HomeComponent } from './home/home.component';
       {
         path:'homepage',
         component:HomeComponent
+      },
+      {
+        path:'addmember',
+        component:AddmemberComponent
+      },
+      {
+        path:'aboutpage',
+        component:AboutComponent
       }
+      
       ])
   ],
   providers: [],

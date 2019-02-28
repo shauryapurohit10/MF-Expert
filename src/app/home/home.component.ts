@@ -7,12 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-/*
+
 id:any = '';
 name:any = '';
 cnumber:any = '';
 
-Employee:any [] = [];*/
+//Employee:any [] = [];
 employees:any;
 
 
@@ -26,9 +26,9 @@ employees:any;
 //     });
 // }
 
-// deleteEmployee(index) {
-//     this.employees.splice(index, 1);
-// }
+deleteEmployee(index) {
+    this.employees.splice(index, 1);
+}
 
 // editEmployee(index) {
 
