@@ -3,324 +3,314 @@
 <app-side-nav></app-side-nav>
 
 
-<div class="bs-example" style="margin-top:10px; margin-left:275px">
+<div class="bs-example" style="margin-top:10px; margin-left:200px">
     <div class="panel-group" id="accordion">
-        <div class="panel panel-default" *ngFor="let i of [1]">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <!-- <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> <h4 class="panel-title"></h4></a> -->
-                <button class="btn btn-primary"  type="button" #btn (click)="btn.toggle = !btn.toggle">
+                <button class="btn btn-primary"  type="button" #btn (click)="show(1)">
                         Add Member
-                    </button>                
+                </button>                
             </div>
 
             <!-- <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body"> -->
-            <div [ngClass]="{collapse:!btn.toggle}">
-                <div class="card card-body">
-                    <div class="container register" style="margin-top:10px; margin-left:5px">
-                        <div class="row register-form">
-                            <div class="col-md-12">
-                                <form class="form-horizontal" style="color:white">
+            <form [formGroup]="registerForm"  (ngSubmit)="onSubmit()" >
+                <div [class.collapse]='flag != 1'>
+                    <div class="card card-body">
+                        <div class="container register">
+                            <div class="row register-form" style="margin-top:0px; margin-left:-20px">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-3" for="email">CB Member Name :*</label>
-                                            <div class="col-sm-9">
-                                                <input type="email" class="form-control" style="width: 350px" id="email" placeholder="" name="email">
-                                            </div>
+                                        <input type="text" formControlName="cbname" class="form-control" style="width: 350px" id="cbname" placeholder="CB Member Name :*" [ngClass]="{ 'is-invalid': submitted && f.cbname.errors }" />
+                                        <div *ngIf="submitted && f.cbname.errors" class="invalid-feedback">
+                                                <div *ngIf="f.cbname.errors.required">CB Mmeber Name is required</div>
+                                        </div>
                                     </div>
-                                </form>
-                                <form class="form-horizontal" style="color:white">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-3" for="email">Select Group :*</label>
-                                            <div class="col-sm-9">
-                                                <input type="email" class="form-control" style="width: 350px" id="email" placeholder="" name="email">
-                                            </div>
+                                        <input type="text" formControlName="group" class="form-control" style="width: 350px" placeholder="Select Group :*" [ngClass]="{ 'is-invalid': submitted && f.group.errors }" />
+                                        <div *ngIf="submitted && f.group.errors" class="invalid-feedback">
+                                                <div *ngIf="f.group.errors.required">Group is required</div>
+                                        </div>
                                     </div>
-                                </form>
-                                <form class="form-horizontal" style="color:white">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-3" for="email">Memeber Date :*</label>
-                                            <div class="col-sm-9">
-                                                <input type="email" class="form-control" style="width: 350px" id="email" placeholder="" name="email">
-                                            </div>
+                                        <input type="text" formControlName="mdate" class="form-control" style="width: 350px" placeholder="Memeber Date :*" [ngClass]="{ 'is-invalid': submitted && f.mdate.errors }"/>
+                                        <div *ngIf="submitted && f.mdate.errors" class="invalid-feedback">
+                                                <div *ngIf="f.mdate.errors.required">Mmeber Date is required</div>
+                                        </div>
                                     </div>
-                                </form>
-                                <form class="form-horizontal" style="color:white">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-3" for="email">Name (per Aadhar Card) :*</label>
-                                            <div class="col-sm-9">
-                                                <input type="email" class="form-control" style="width: 350px" id="email" placeholder="" name="email">
-                                            </div>
+                                        <input type="text" formControlName="aname" class="form-control" style="width: 350px" placeholder="Name (Aadhar Card) :*" [ngClass]="{ 'is-invalid': submitted && f.aname.errors }"/>
+                                        <div *ngIf="submitted && f.aname.errors" class="invalid-feedback">
+                                                <div *ngIf="f.aname.errors.required">Name is required</div>
+                                        </div>
                                     </div>
-                                </form>	
-                            <!-- </div> -->
-                            <!-- <div class="col-md-6"> -->
-                                <form class="form-horizontal" style="color:white">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-3" for="email">Mobile Number :*</label>
-                                            <div class="col-sm-9">
-                                                <input type="email" class="form-control" style="width: 350px" id="email" placeholder="" name="email">
-                                            </div>
-                                    </div>
-                                </form>
-                                <form class="form-horizontal" style="color:white">
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-3" for="email">Alias Name :*</label>
-                                            <div class="col-sm-9">
-                                                <input type="email" class="form-control" style="width: 350px" id="email" placeholder="" name="email">
-                                            </div>
-                                    </div>
-                                </form>
-                                <div class="form-group">
-                                    <div class="maxl">
-                                        <label class="radio inline col-sm-3" style="color:white"> Gender :*  
-                                            <input type="radio" name="gender" value="male" checked style="margin-left:5px">
-                                            <span style="margin-left:20px"> Male </span>
-                                            
-                                            <input type="radio" name="gender" value="female" style="margin-left:5px">
-                                            <span style="margin-left:20px">Female </span>                                             
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="maxl">
-                                        <label class="radio inline col-sm-9" style="color:white"> Martial Status :*  
-                                            <input type="radio" name="gender" value="male" checked style="margin-left:5px">
-                                            <span style="margin-left:20px"> Married </span>
-                                            
-                                            <input type="radio" name="gender" value="female" style="margin-left:5px">
-                                            <span style="margin-left:20px"> Unmarried  </span>       
-                                            
-                                            <input type="radio" name="gender" value="female" style="margin-left:5px">
-                                            <span style="margin-left:20px"> Widow </span>   
+                                        <div class="maxl">
+                                            <label class="radio inline"> Gender :*  
+                                                <input type="radio" formControlName="gender" name="gender" value="male" style="margin-left:0px" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+                                                <span style="margin-left:15px"> Male </span>
 
-                                            <input type="radio" name="gender" value="female" style="margin-left:5px">
-                                            <span style="margin-left:20px"> Divorcee </span>   
-                                        </label>
+                                                <input type="radio" formControlName="gender" name="gender" value="female" style="margin-left:15px" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+                                                <span style="margin-left:30px">Female </span>  
+
+                                                <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.gender.errors.required">Gender is required</div>
+                                                </div>                                           
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="maxl">
+                                            <label class="radio inline"> Marital Status
+                                                <input type="radio" formControlName="mstatus" name="mstatus" value="married" style="margin-left:0px" [ngClass]="{ 'is-invalid': submitted && f.mstatus.errors }">
+                                                <span style="margin-left:15px">Married</span>
+                                                
+                                                <input type="radio" formControlName="mstatus" name="mstatus" value="unmarried" style="margin-left:15px" [ngClass]="{ 'is-invalid': submitted && f.mstatus.errors }">
+                                                <span style="margin-left:30px">Unmarried</span>
+                                                
+                                                <input type="radio" formControlName="mstatus" name="mstatus" value="widow" style="margin-left:30px" [ngClass]="{ 'is-invalid': submitted && f.mstatus.errors }">
+                                                <span style="margin-left:45px">Widow</span>
+
+                                                <input type="radio" formControlName="mstatus" name="mstatus" value="divorcee" style="margin-left:45px" [ngClass]="{ 'is-invalid': submitted && f.mstatus.errors }">
+                                                <span style="margin-left:60px">Divorcee</span>
+                                                <div *ngIf="submitted && f.mstatus.errors" class="invalid-feedback">
+                                                        <div *ngIf="f.mstatus.errors.required">Marital Status is required</div>
+                                                </div>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                                <br>
-                                <div style="margin-left:350px">
-                                    <button type="button" class="btn" style="color:black;background-color:white">Get Data</button>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" formControlName="alname" class="form-control" style="width: 300px;margin-top:40px" placeholder="Alias Name :*" [ngClass]="{ 'is-invalid': submitted && f.alname.errors }"/>
+                                        <div *ngIf="submitted && f.alname.errors" class="invalid-feedback">
+                                                <div *ngIf="f.alname.errors.required">CB Mmeber Name is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="number" formControlName="mnumber" minlength="10" maxlength="10" name="mnumber" class="form-control" style="width: 300px;margin-top:40px" placeholder="Mobile Number :*" [ngClass]="{ 'is-invalid': submitted && f.mnumber.errors }"/>
+                                        <div *ngIf="submitted && f.mnumber.errors" class="invalid-feedback">
+                                                <div *ngIf="f.mnumber.errors.required">CB Mmeber Name is required</div>
+                                        </div>
+                                    </div>
+                                
+
+                                    <button type="submit" class="btn btn-dark" style="color:white; margin-top: 25px; margin-left: 100px; background-color: black">Register</button>
                                 </div>
-                                <!-- <button type="button" class="btn btn-primary">Get Data</button> -->
-                                <!-- <input type="submit" class="btnSubmit"  value="Submit"/> -->
-                                <!-- </div> -->
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
 
 
 
-        <div class="panel panel-default" *ngFor="let i of [1]">
+        <div class="panel panel-default">
             <div class="panel-heading">
-                <button class="btn btn-primary" type="button" #btn (click)="btn.toggle = !btn.toggle">
+                <button class="btn btn-primary" type="button" #btn (click)="show(2)">
                     KYC Details
                 </button>
             </div>
-            <div [ngClass]="{collapse:!btn.toggle}">
-                <div class="card card-body">
-                    <div class="container register" style="margin-top:10px; margin-left:5px">
-                        <div class="row register-form">
-                            <div class="col-md-12">
-                                <form class="form-horizontal" style="color:white">
+            <form [formGroup]="registerForm"  (ngSubmit)="onSubmit()" >
+                <div [class.collapse]='flag != 2'>
+                    <div class="card card-body">
+                        <div class="container register">
+                            <div class="row register-form" style="margin-top:0px; margin-left:-20px">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-3" for="email">CB Member Name :*</label>
-                                            <div class="col-sm-9">
-                                                <input type="email" class="form-control" style="width: 350px" id="email" placeholder="" name="email">
-                                            </div>
+                                        <input type="text" formControlName="cbname" class="form-control" style="width: 350px" id="cbname" placeholder="CB Member Name :*" [ngClass]="{ 'is-invalid': submitted && f.cbname.errors }" />
+                                        <div *ngIf="submitted && f.cbname.errors" class="invalid-feedback">
+                                                <div *ngIf="f.cbname.errors.required">CB Mmeber Name is required</div>
+                                        </div>
                                     </div>
-                                </form>
-                                <form class="form-horizontal" style="color:white">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-3" for="email">Select Group :*</label>
-                                            <div class="col-sm-9">
-                                                <input type="email" class="form-control" style="width: 350px" id="email" placeholder="" name="email">
-                                            </div>
+                                        <input type="text" formControlName="group" class="form-control" style="width: 350px" placeholder="Select Group :*" [ngClass]="{ 'is-invalid': submitted && f.group.errors }" />
+                                        <div *ngIf="submitted && f.group.errors" class="invalid-feedback">
+                                                <div *ngIf="f.group.errors.required">Group is required</div>
+                                        </div>
                                     </div>
-                                </form>
-                                <form class="form-horizontal" style="color:white">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-3" for="email">Memeber Date :*</label>
-                                            <div class="col-sm-9">
-                                                <input type="email" class="form-control" style="width: 350px" id="email" placeholder="" name="email">
-                                            </div>
+                                        <input type="text" formControlName="mdate" class="form-control" style="width: 350px" placeholder="Memeber Date :*" [ngClass]="{ 'is-invalid': submitted && f.mdate.errors }"/>
+                                        <div *ngIf="submitted && f.mdate.errors" class="invalid-feedback">
+                                                <div *ngIf="f.mdate.errors.required">Mmeber Date is required</div>
+                                        </div>
                                     </div>
-                                </form>
-                                <form class="form-horizontal" style="color:white">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-3" for="email">Name (per Aadhar Card) :*</label>
-                                            <div class="col-sm-9">
-                                                <input type="email" class="form-control" style="width: 350px" id="email" placeholder="" name="email">
-                                            </div>
+                                        <input type="text" formControlName="aname" class="form-control" style="width: 350px" placeholder="Name (Aadhar Card) :*" [ngClass]="{ 'is-invalid': submitted && f.aname.errors }"/>
+                                        <div *ngIf="submitted && f.aname.errors" class="invalid-feedback">
+                                                <div *ngIf="f.aname.errors.required">Name is required</div>
+                                        </div>
                                     </div>
-                                </form>	
-                            <!-- </div> -->
-                            <!-- <div class="col-md-6"> -->
-                                <form class="form-horizontal" style="color:white">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-3" for="email">Mobile Number :*</label>
-                                            <div class="col-sm-9">
-                                                <input type="email" class="form-control" style="width: 350px" id="email" placeholder="" name="email">
-                                            </div>
-                                    </div>
-                                </form>
-                                <form class="form-horizontal" style="color:white">
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-3" for="email">Alias Name :*</label>
-                                            <div class="col-sm-9">
-                                                <input type="email" class="form-control" style="width: 350px" id="email" placeholder="" name="email">
-                                            </div>
-                                    </div>
-                                </form>
-                                <div class="form-group">
-                                    <div class="maxl">
-                                        <label class="radio inline col-sm-3" style="color:white"> Gender :*  
-                                            <input type="radio" name="gender" value="male" checked style="margin-left:5px">
-                                            <span style="margin-left:20px"> Male </span>
-                                            
-                                            <input type="radio" name="gender" value="female" style="margin-left:5px">
-                                            <span style="margin-left:20px">Female </span>                                             
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="maxl">
-                                        <label class="radio inline col-sm-9" style="color:white"> Martial Status :*  
-                                            <input type="radio" name="gender" value="male" checked style="margin-left:5px">
-                                            <span style="margin-left:20px"> Married </span>
-                                            
-                                            <input type="radio" name="gender" value="female" style="margin-left:5px">
-                                            <span style="margin-left:20px"> Unmarried  </span>       
-                                            
-                                            <input type="radio" name="gender" value="female" style="margin-left:5px">
-                                            <span style="margin-left:20px"> Widow </span>   
+                                        <div class="maxl">
+                                            <label class="radio inline"> Gender :*  
+                                                <input type="radio" formControlName="gender" name="gender" value="male" style="margin-left:0px" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+                                                <span style="margin-left:15px"> Male </span>
 
-                                            <input type="radio" name="gender" value="female" style="margin-left:5px">
-                                            <span style="margin-left:20px"> Divorcee </span>   
-                                        </label>
+                                                <input type="radio" formControlName="gender" name="gender" value="female" style="margin-left:15px" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+                                                <span style="margin-left:30px">Female </span>  
+
+                                                <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.gender.errors.required">Gender is required</div>
+                                                </div>                                           
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="maxl">
+                                            <label class="radio inline"> Marital Status
+                                                <input type="radio" formControlName="mstatus" name="mstatus" value="married" style="margin-left:0px" [ngClass]="{ 'is-invalid': submitted && f.mstatus.errors }">
+                                                <span style="margin-left:15px">Married</span>
+                                                
+                                                <input type="radio" formControlName="mstatus" name="mstatus" value="unmarried" style="margin-left:15px" [ngClass]="{ 'is-invalid': submitted && f.mstatus.errors }">
+                                                <span style="margin-left:30px">Unmarried</span>
+                                                
+                                                <input type="radio" formControlName="mstatus" name="mstatus" value="widow" style="margin-left:30px" [ngClass]="{ 'is-invalid': submitted && f.mstatus.errors }">
+                                                <span style="margin-left:45px">Widow</span>
+
+                                                <input type="radio" formControlName="mstatus" name="mstatus" value="divorcee" style="margin-left:45px" [ngClass]="{ 'is-invalid': submitted && f.mstatus.errors }">
+                                                <span style="margin-left:60px">Divorcee</span>
+                                                <div *ngIf="submitted && f.mstatus.errors" class="invalid-feedback">
+                                                        <div *ngIf="f.mstatus.errors.required">Marital Status is required</div>
+                                                </div>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                                <br>
-                                <div style="margin-left:350px">
-                                    <button type="button" class="btn" style="color:black;background-color:white">Get Data</button>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" formControlName="alname" class="form-control" style="width: 300px;margin-top:40px" placeholder="Alias Name :*" [ngClass]="{ 'is-invalid': submitted && f.alname.errors }"/>
+                                        <div *ngIf="submitted && f.alname.errors" class="invalid-feedback">
+                                                <div *ngIf="f.alname.errors.required">CB Mmeber Name is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="number" formControlName="mnumber" minlength="10" maxlength="10" name="mnumber" class="form-control" style="width: 300px;margin-top:40px" placeholder="Mobile Number :*" [ngClass]="{ 'is-invalid': submitted && f.mnumber.errors }"/>
+                                        <div *ngIf="submitted && f.mnumber.errors" class="invalid-feedback">
+                                                <div *ngIf="f.mnumber.errors.required">CB Mmeber Name is required</div>
+                                        </div>
+                                    </div>
+                                
+
+                                    <button type="submit" class="btn btn-dark" style="color:white; margin-top: 25px; margin-left: 100px; background-color: black">Register</button>
                                 </div>
-                                <!-- <button type="button" class="btn btn-primary">Get Data</button> -->
-                                <!-- <input type="submit" class="btnSubmit"  value="Submit"/> -->
-                                <!-- </div> -->
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>    
+            </form>
         </div>
+       <!-- <div class="panel panel-default">
+            <div class="panel-heading">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"> <h4 class="panel-title">
+                  Question Three
+                </h4></a>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tincidunt ipsum eget nisl accumsan, eu cursus tellus bibendum. Nam et ipsum scelerisque dolor consequat tempor vel vel tortor.</p>
+					<p>Ut finibus facilisis lacus, sit amet porttitor enim mollis sed. Nunc orci magna, iaculis sit amet magna non, tincidunt varius sem.</p>
+                </div>
+            </div>
+        </div> -->
 
-        <div class="panel panel-default" *ngFor="let i of [1]">
+        <div class="panel panel-default" >
                 <div class="panel-heading">
-                    <button class="btn btn-primary" type="button" #btn (click)="btn.toggle = !btn.toggle">
-                        Address Information
+                    <button class="btn btn-primary" type="button" #btn (click)="show(3)">
+                        Address Details
                     </button>
                 </div>
-                <div [ngClass]="{collapse:!btn.toggle}">
-                    <div class="card card-body">
-                        <div class="container register" style="margin-top:10px; margin-left:5px">
-                            <div class="row register-form">
-                                <div class="col-md-12">
-                                    <form class="form-horizontal" style="color:white">
+                <form [formGroup]="registerForm"  (ngSubmit)="onSubmit()" >
+                    <div [class.collapse]='flag != 3'>
+                        <div class="card card-body">
+                            <div class="container register">
+                                <div class="row register-form" style="margin-top:0px; margin-left:-20px">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label col-sm-3" for="email">CB Member Name :*</label>
-                                                <div class="col-sm-9">
-                                                    <input type="email" class="form-control" style="width: 350px" id="email" placeholder="" name="email">
-                                                </div>
+                                            <input type="text" formControlName="cbname" class="form-control" style="width: 350px" id="cbname" placeholder="CB Member Name :*" [ngClass]="{ 'is-invalid': submitted && f.cbname.errors }" />
+                                            <div *ngIf="submitted && f.cbname.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.cbname.errors.required">CB Mmeber Name is required</div>
+                                            </div>
                                         </div>
-                                    </form>
-                                    <form class="form-horizontal" style="color:white">
                                         <div class="form-group">
-                                            <label class="control-label col-sm-3" for="email">Select Group :*</label>
-                                                <div class="col-sm-9">
-                                                    <input type="email" class="form-control" style="width: 350px" id="email" placeholder="" name="email">
-                                                </div>
+                                            <input type="text" formControlName="group" class="form-control" style="width: 350px" placeholder="Select Group :*" [ngClass]="{ 'is-invalid': submitted && f.group.errors }" />
+                                            <div *ngIf="submitted && f.group.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.group.errors.required">Group is required</div>
+                                            </div>
                                         </div>
-                                    </form>
-                                    <form class="form-horizontal" style="color:white">
                                         <div class="form-group">
-                                            <label class="control-label col-sm-3" for="email">Memeber Date :*</label>
-                                                <div class="col-sm-9">
-                                                    <input type="email" class="form-control" style="width: 350px" id="email" placeholder="" name="email">
-                                                </div>
+                                            <input type="text" formControlName="mdate" class="form-control" style="width: 350px" placeholder="Memeber Date :*" [ngClass]="{ 'is-invalid': submitted && f.mdate.errors }"/>
+                                            <div *ngIf="submitted && f.mdate.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.mdate.errors.required">Mmeber Date is required</div>
+                                            </div>
                                         </div>
-                                    </form>
-                                    <form class="form-horizontal" style="color:white">
                                         <div class="form-group">
-                                            <label class="control-label col-sm-3" for="email">Name (per Aadhar Card) :*</label>
-                                                <div class="col-sm-9">
-                                                    <input type="email" class="form-control" style="width: 350px" id="email" placeholder="" name="email">
-                                                </div>
+                                            <input type="text" formControlName="aname" class="form-control" style="width: 350px" placeholder="Name (Aadhar Card) :*" [ngClass]="{ 'is-invalid': submitted && f.aname.errors }"/>
+                                            <div *ngIf="submitted && f.aname.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.aname.errors.required">Name is required</div>
+                                            </div>
                                         </div>
-                                    </form>	
-                                <!-- </div> -->
-                                <!-- <div class="col-md-6"> -->
-                                    <form class="form-horizontal" style="color:white">
                                         <div class="form-group">
-                                            <label class="control-label col-sm-3" for="email">Mobile Number :*</label>
-                                                <div class="col-sm-9">
-                                                    <input type="email" class="form-control" style="width: 350px" id="email" placeholder="" name="email">
-                                                </div>
-                                        </div>
-                                    </form>
-                                    <form class="form-horizontal" style="color:white">
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-3" for="email">Alias Name :*</label>
-                                                <div class="col-sm-9">
-                                                    <input type="email" class="form-control" style="width: 350px" id="email" placeholder="" name="email">
-                                                </div>
-                                        </div>
-                                    </form>
-                                    <div class="form-group">
-                                        <div class="maxl">
-                                            <label class="radio inline col-sm-3" style="color:white"> Gender :*  
-                                                <input type="radio" name="gender" value="male" checked style="margin-left:5px">
-                                                <span style="margin-left:20px"> Male </span>
-                                                
-                                                <input type="radio" name="gender" value="female" style="margin-left:5px">
-                                                <span style="margin-left:20px">Female </span>                                             
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="maxl">
-                                            <label class="radio inline col-sm-9" style="color:white"> Martial Status :*  
-                                                <input type="radio" name="gender" value="male" checked style="margin-left:5px">
-                                                <span style="margin-left:20px"> Married </span>
-                                                
-                                                <input type="radio" name="gender" value="female" style="margin-left:5px">
-                                                <span style="margin-left:20px"> Unmarried  </span>       
-                                                
-                                                <input type="radio" name="gender" value="female" style="margin-left:5px">
-                                                <span style="margin-left:20px"> Widow </span>   
+                                            <div class="maxl">
+                                                <label class="radio inline"> Gender :*  
+                                                    <input type="radio" formControlName="gender" name="gender" value="male" style="margin-left:0px" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+                                                    <span style="margin-left:15px"> Male </span>
 
-                                                <input type="radio" name="gender" value="female" style="margin-left:5px">
-                                                <span style="margin-left:20px"> Divorcee </span>   
-                                            </label>
+                                                    <input type="radio" formControlName="gender" name="gender" value="female" style="margin-left:15px" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+                                                    <span style="margin-left:30px">Female </span>  
+
+                                                    <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                                                        <div *ngIf="f.gender.errors.required">Gender is required</div>
+                                                    </div>                                           
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="maxl">
+                                                <label class="radio inline"> Marital Status
+                                                    <input type="radio" formControlName="mstatus" name="mstatus" value="married" style="margin-left:0px" [ngClass]="{ 'is-invalid': submitted && f.mstatus.errors }">
+                                                    <span style="margin-left:15px">Married</span>
+                                                    
+                                                    <input type="radio" formControlName="mstatus" name="mstatus" value="unmarried" style="margin-left:15px" [ngClass]="{ 'is-invalid': submitted && f.mstatus.errors }">
+                                                    <span style="margin-left:30px">Unmarried</span>
+                                                    
+                                                    <input type="radio" formControlName="mstatus" name="mstatus" value="widow" style="margin-left:30px" [ngClass]="{ 'is-invalid': submitted && f.mstatus.errors }">
+                                                    <span style="margin-left:45px">Widow</span>
+
+                                                    <input type="radio" formControlName="mstatus" name="mstatus" value="divorcee" style="margin-left:45px" [ngClass]="{ 'is-invalid': submitted && f.mstatus.errors }">
+                                                    <span style="margin-left:60px">Divorcee</span>
+                                                    <div *ngIf="submitted && f.mstatus.errors" class="invalid-feedback">
+                                                            <div *ngIf="f.mstatus.errors.required">Marital Status is required</div>
+                                                    </div>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
-                                    <br>
-                                    <div style="margin-left:350px">
-                                        <button type="button" class="btn" style="color:black;background-color:white">Get Data</button>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" formControlName="alname" class="form-control" style="width: 300px;margin-top:40px" placeholder="Alias Name :*" [ngClass]="{ 'is-invalid': submitted && f.alname.errors }"/>
+                                            <div *ngIf="submitted && f.alname.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.alname.errors.required">CB Mmeber Name is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="number" formControlName="mnumber" minlength="10" maxlength="10" name="mnumber" class="form-control" style="width: 300px;margin-top:40px" placeholder="Mobile Number :*" [ngClass]="{ 'is-invalid': submitted && f.mnumber.errors }"/>
+                                            <div *ngIf="submitted && f.mnumber.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.mnumber.errors.required">CB Mmeber Name is required</div>
+                                            </div>
+                                        </div>
+                                    
+
+                                        <button type="submit" class="btn btn-dark" style="color:white; margin-top: 25px; margin-left: 100px; background-color: black">Register</button>
                                     </div>
-                                    <!-- <button type="button" class="btn btn-primary">Get Data</button> -->
-                                    <!-- <input type="submit" class="btnSubmit"  value="Submit"/> -->
-                                    <!-- </div> -->
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>    
-            </div>
-
-	</div>
+                </form>
+	    </div>
 			
       
 </div>
