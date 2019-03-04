@@ -17,6 +17,7 @@ import { MemberInfoComponent } from './members/member-info/member-info.component
 import { AboutComponent } from './about/about.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { AddmemberComponent } from './members/addmember/addmember.component';
+import { LoanAppComponent } from './loan-app/loan-app.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AddmemberComponent } from './members/addmember/addmember.component';
     MemberInfoComponent,
     AboutComponent,
     SideNavComponent,
-    AddmemberComponent
+    AddmemberComponent,
+    LoanAppComponent
   ],
   imports: [
     BrowserModule,
@@ -59,8 +61,11 @@ import { AddmemberComponent } from './members/addmember/addmember.component';
       {
         path:'aboutpage',
         component:AboutComponent
-      }
-      
+      },
+      {
+        path:'loanapp',
+        component:LoanAppComponent
+      } 
       ])
   ],
   providers: [],
