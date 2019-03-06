@@ -18,6 +18,9 @@ import { AboutComponent } from './about/about.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { AddmemberComponent } from './members/addmember/addmember.component';
 import { LoanAppComponent } from './loan-app/loan-app.component';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { OverlayModule } from "@angular/cdk/overlay";
 
 @NgModule({
   declarations: [
@@ -41,6 +44,9 @@ import { LoanAppComponent } from './loan-app/loan-app.component';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpModule,
+    HttpClientModule,
+    OverlayModule,
     RouterModule.forRoot([
       {
         path:'',
